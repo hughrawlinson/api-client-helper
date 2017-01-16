@@ -1,0 +1,29 @@
+{
+  "name": "api-client-helper",
+  "version": "0.0.1",
+  "description": "A package to help write API client libraries in Node",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hughrawlinson/api-client-helper.git"
+  },
+  "keywords": [
+    "api"
+  ],
+  "author": "Hugh Rawlinson <hughr2005@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hughrawlinson/api-client-helper/issues"
+  },
+  "homepage": "https://github.com/hughrawlinson/api-client-helper#readme",
+  "dependencies": {
+    "mocha": "^3.2.0",
+    "node-fetch": "^1.6.3"
+  },
+  "devDependencies": {
+    "ava": "^0.17.0"
+  }
+}
