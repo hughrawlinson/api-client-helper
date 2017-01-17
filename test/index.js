@@ -1,7 +1,7 @@
 /* eslint import/no-extraneous-dependencies: ["error", {"devDependencies": true}] */
 /* eslint-env node, mocha */
 import test from 'ava';
-import { endpoint } from '../src';
+import endpoint from '../src/endpoint';
 
 test('endpoint returns correctly partially applied function', (t) => {
   const endpointConfig = {
