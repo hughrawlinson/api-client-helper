@@ -1,6 +1,7 @@
+/* eslint import/no-extraneous-dependencies: ["error", {"devDependencies": true}] */
 /* eslint-env node, mocha */
-import assert from 'assert';
-import api, { endpoint } from '../src';
+import test from 'ava';
+import endpoint from '../src/endpoint';
 
 test('happy ponies', () => {
   const fetch = () => null;
@@ -17,17 +18,18 @@ test('happy ponies', () => {
   });
 });
 
-test('returns a request object with the correct url', () => {
+test.skip('returns a request object with the correct url', (t) => {
   const testUrl = 'http://api.example.com/v1/';
   const Request = (url) => {
-    assert(url === testUrl);
+    t.true(url === testUrl);
   };
   endpoint(Request);
 });
-test('should append a trailing slash if one is missing in the given url', () => {
+
+test.skip('should append a trailing slash if one is missing in the given url', (t) => {
   const testUrl = 'http://api.example.com/v1';
   const Request = (url) => {
-    assert(url === `${testUrl}/`);
+    t.true(url === `${testUrl}/`);
   };
   endpoint(Request);
 });
