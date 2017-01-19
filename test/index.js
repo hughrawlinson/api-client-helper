@@ -1,32 +1,41 @@
 /* eslint import/no-extraneous-dependencies: ["error", {"devDependencies": true}] */
 /* eslint-env node, mocha */
 import test from 'ava';
-import endpoint from '../src/endpoint';
+import api from '../src/api';
 
-test('endpoint returns correctly partially applied function', (t) => {
-  const endpointConfig = {
-    uri: 'http://example.com',
-  };
-  const init = () => {};
-  const Request = (uriOpt, initOpt) => {
-    t.true(uriOpt === endpointConfig.uri);
-    t.true(initOpt.toString() === init.toString());
-  };
-  endpoint(Request, init)(endpointConfig);
+test('Collates single endpoint into generated wrapper keys', (t) => {
+  const apiGenerator = api(null, null, null, null);
+
+  const generatedWrapper = apiGenerator({
+    baseUri: 'https://api.example.com/v1',
+    endpoints: [{
+      name: 'listObjects',
+      uri: '/objects',
+    }],
+  });
+
+  t.truthy(generatedWrapper);
+  const wrapperKeys = Object.keys(generatedWrapper);
+  t.true(wrapperKeys[0] === 'listObjects');
+  t.is(wrapperKeys.length, 1);
 });
 
-test.skip('returns a request object with the correct url', (t) => {
-  const testUrl = 'http://api.example.com/v1/';
-  const Request = (url) => {
-    t.true(url === testUrl);
-  };
-  endpoint(Request);
-});
+test('Collates multiple endpoints into generated wrapper keys', (t) => {
+  const apiGenerator = api(null, null, null, null);
 
-test.skip('should append a trailing slash if one is missing in the given url', (t) => {
-  const testUrl = 'http://api.example.com/v1';
-  const Request = (url) => {
-    t.true(url === `${testUrl}/`);
-  };
-  endpoint(Request);
+  const generatedWrapper = apiGenerator({
+    baseUri: 'https://api.example.com/v1',
+    endpoints: [{
+      name: 'listObjects',
+      uri: '/objects',
+    }, {
+      name: 'objectById',
+      uri: '/objects/{id}',
+    }],
+  });
+
+  t.truthy(generatedWrapper);
+  const wrapperKeys = Object.keys(generatedWrapper);
+  t.true(wrapperKeys[0] === 'listObjects');
+  t.true(wrapperKeys[1] === 'objectById');
 });
