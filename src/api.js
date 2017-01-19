@@ -8,6 +8,6 @@ const api = (fetchProvider,
         uri: apiConfig.baseUri,
       }, endpointConfig)(params)));
     },
-  }));
+  })).reduce((obj, item) => Object.assign(obj, item), {});
 
 module.exports = api;
