@@ -12,5 +12,9 @@ test('endpoint returns correctly partially applied function', (t) => {
     t.true(uriOpt === endpointConfig.uri);
     t.true(initOpt.toString() === init.toString());
   };
-  endpoint(Request, init)(endpointConfig);
+  const partial = endpoint(Request, init);
+  t.true(typeof partial === "function");
+  t.notThrows(() => {
+    partial(endpointConfig);
+  });
 });
