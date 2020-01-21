@@ -4,7 +4,7 @@
   "description": "A package to help write API client libraries in Node",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/ava --verbose"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,6 @@
     "node-fetch": "^2.0.0"
   },
   "devDependencies": {
-    "ava": "^2.0.0"
+    "jest": "^24.9.0"
   }
 }
