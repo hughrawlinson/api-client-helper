@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/hughrawlinson/api-client-helper#readme",
   "dependencies": {
-    "node-fetch": "^2.0.0"
+    "node-fetch": "^2.6.1"
   },
   "devDependencies": {
     "jest": "^26.4.2"
